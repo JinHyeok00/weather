@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.app.weather.domain.vo.MidVO" alias="midVO"/>
+        <typeAlias type="com.app.weather.domain.vo.ShortVO" alias="shortVO"/>
+        <typeAlias type="com.app.weather.domain.vo.VeryShortVO" alias="veryShortVO"/>
+    </typeAliases>
+</configuration>

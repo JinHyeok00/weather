@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.weather.mapper.MidMapper">
+    <!--  C  -->
+    <insert id="insert">
+        insert into tbl_mid
+        (stnId, tmFc, resultCode, resultMsg, numOfRows, pageNo, totalCount, dataType, wfSv)
+        values(#{stnId},#{tmFc},#{resultCode},#{resultMsg},#{numOfRows},#{pageNo},#{totalCount},#{dataType},#{wfSv});
+    </insert>
+    <!--  R  -->
+    <select id="select" resultType="midVO">
+        select stnId, tmFc, resultCode, resultMsg, numOfRows, pageNo, totalCount, dataType, wfSv
+        from tbl_mid
+        where stnId = #{stnId} and tmFc =#{tmFc}
+    </select>
+</mapper>

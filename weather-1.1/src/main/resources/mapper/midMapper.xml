@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.weather.mapper.MidMapper">
+    <!--  c  -->
+    <insert id="insert">
+    INSERT INTO weather.tbl_mid
+    (stnId, tmFc, response)
+    VALUES(#{stnId}, #{tmFc}, #{response});
+    </insert>
+
+    <select id="select" resultType="midVO">
+    SELECT stnId, tmFc, response
+    FROM weather.tbl_mid
+    where stnId = #{stnId} and tmFc = #{tmFc};
+    </select>
+</mapper>

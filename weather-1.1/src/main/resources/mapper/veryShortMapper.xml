@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.weather.mapper.VeryShortMapper">
+    <!--  c  -->
+    <insert id="insert">
+    INSERT INTO weather.tbl_veryshort
+    (nx, ny, baseDate, baseTime, response)
+    VALUES(#{nx}, #{ny}, #{baseDate}, #{baseTime}, #{response});
+    </insert>
+
+    <!--  R  -->
+    <select id="select" resultType="veryShortVO">
+    SELECT nx, ny, baseDate, baseTime, response
+    FROM weather.tbl_veryshort
+    where nx = #{nx} and ny = #{ny} and baseDate = #{baseDate} and baseTime =#{baseTime};
+    </select>
+</mapper>
