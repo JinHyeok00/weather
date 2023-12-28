@@ -12,7 +12,7 @@ public class MidEntity{
     private MidPk midPk;            //key값
 
     @Embedded
-    private Header header;
+    private Header header;          //
 
     @Embedded
     private MidBody midBody;

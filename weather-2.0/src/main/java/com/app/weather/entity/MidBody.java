@@ -8,6 +8,8 @@ import java.util.List;
 @Getter
 @Embeddable
 public class MidBody {
+    private static final long serialVersionUID = 1L;
+
     private String dataType;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
