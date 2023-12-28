@@ -1,7 +1,6 @@
 package com.app.weather.entity;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -12,6 +11,9 @@ public class MidEntity{
     @EmbeddedId
     private MidPk midPk;            //key값
 
-    @Column
-    private String response;        // 응답값
+    @Embedded
+    private Header header;
+
+    @Embedded
+    private MidBody midBody;
 }
