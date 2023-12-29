@@ -4,6 +4,7 @@ import com.app.weather.dto.MidDTO;
 import com.app.weather.entity.MidEntity;
 import com.app.weather.entity.MidPk;
 import com.app.weather.repository.MidRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
@@ -26,7 +27,7 @@ public class MidService {
         if(optionalMidEntity.isPresent()){
             // 조회 값이 있으면
             MidEntity midEntity = optionalMidEntity.get();
-            MidDTO midDTO = MidDTO.toMidDTO(midEntity);
+            MidDTO midDTO = MidDTO.convertToMidDTO(midEntity);
             return midDTO;
         }
         //없으면
@@ -52,18 +53,18 @@ public class MidService {
                 .build();
         try {
             HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
-            // 응답 값 저장
-            JSONObject response = new JSONObject(httpResponse.body()).getJSONObject("response");
-            // 에러 코드 저장
-            String resultCode = response.getJSONObject("header").getString("resultCode");
-
-            //  응답값이 적절하다면 DB에 저장하고 값을 반환 한다
-            if(resultCode.equals("00")){
-                MidDTO midDTO = new MidDTO();
-                midDTO.setStnId(stnId);
-                midDTO.setTmFc(tmFc);
-                //여기까지 진행
-            }
-        }catch (Exception e){ }
+            String response = new JSONObject(httpResponse.body()).getString("response");
+            System.out.println("1");
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println("2");
+            MidDTO midDTO = objectMapper.readValue(response, MidDTO.class);
+            System.out.println("3");
+            MidEntity midEntity = MidEntity.convertToMidEntity(midDTO);
+            System.out.println("4");
+            midRepository.save(midEntity);
+            System.out.println("5");
+        }catch (Exception e){
+            System.out.println("잡았다");
+        }
     }
 }

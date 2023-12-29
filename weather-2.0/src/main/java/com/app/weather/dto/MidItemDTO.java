@@ -4,10 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 public class MidItemDTO {
-    private Long id;
     private String wfSv;
 }
