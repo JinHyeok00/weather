@@ -1,5 +1,6 @@
-package com.app.weather.entity;
+package com.app.weather.entity.mid;
 
+import com.app.weather.dto.mid.MidItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,17 +9,17 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tbl_midItem")
 public class MidItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 500)
     private String wfSv;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,4 +28,12 @@ public class MidItemEntity {
             @JoinColumn(name = "tmFc", referencedColumnName = "tmFc")
     })
     private MidEntity midEntity;
+
+    public static MidItemEntity convertToEntity(MidItem midItem, MidEntity midEntity) {
+        MidItemEntity midItemEntity = MidItemEntity.builder()
+                .wfSv(midItem.getWfSv())
+                .midEntity(midEntity)
+                .build();
+        return midItemEntity;
+    }
 }

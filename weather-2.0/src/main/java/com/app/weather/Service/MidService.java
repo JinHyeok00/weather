@@ -1,24 +1,32 @@
 package com.app.weather.Service;
 
-import com.app.weather.dto.MidDTO;
-import com.app.weather.entity.MidEntity;
-import com.app.weather.entity.MidPk;
+import com.app.weather.dto.mid.MidDTO;
+import com.app.weather.dto.mid.MidItem;
+import com.app.weather.entity.mid.MidEntity;
+import com.app.weather.entity.mid.MidItemEntity;
+import com.app.weather.entity.mid.MidPk;
+import com.app.weather.repository.MidItemRepository;
 import com.app.weather.repository.MidRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MidService {
     private final MidRepository midRepository;
+    private final MidItemRepository midItemRepository;
 
     //조회
     public MidDTO findById(String stnId, String tmFc){
@@ -27,7 +35,7 @@ public class MidService {
         if(optionalMidEntity.isPresent()){
             // 조회 값이 있으면
             MidEntity midEntity = optionalMidEntity.get();
-            MidDTO midDTO = MidDTO.convertToMidDTO(midEntity);
+            MidDTO midDTO = MidDTO.convertToDTO(midEntity);
             return midDTO;
         }
         //없으면
@@ -35,6 +43,7 @@ public class MidService {
     }
 
     //추가
+    @Transactional
     public void save(String stnId, String tmFc){
         String key = "Ro42m3hfgXWsb0ZtX%2FVATvRW%2F027tmCoXL2ODMTYHH9IehqBIU9%2BoPraT67HNlst7MsbISk0CxiLTyYjdB1IaA%3D%3D";
 
@@ -54,17 +63,19 @@ public class MidService {
         try {
             HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
             String response = new JSONObject(httpResponse.body()).getString("response");
-            System.out.println("1");
             ObjectMapper objectMapper = new ObjectMapper();
-            System.out.println("2");
-            MidDTO midDTO = objectMapper.readValue(response, MidDTO.class);
-            System.out.println("3");
-            MidEntity midEntity = MidEntity.convertToMidEntity(midDTO);
-            System.out.println("4");
+            MidDTO midDTO = objectMapper.readValue(response, new TypeReference<MidDTO>() {});
+            midDTO.setStnId(stnId);
+            midDTO.setTmFc(tmFc);
+            MidEntity midEntity = MidEntity.convertToEntity(midDTO);
             midRepository.save(midEntity);
-            System.out.println("5");
+            List<MidItem> midItems = midDTO.getBody().getItems().getItem();
+            for(MidItem midItem : midItems){
+                midItemRepository.save(MidItemEntity.convertToEntity(midItem, midEntity));
+            }
+
         }catch (Exception e){
-            System.out.println("잡았다");
+            e.printStackTrace();
         }
     }
 }
