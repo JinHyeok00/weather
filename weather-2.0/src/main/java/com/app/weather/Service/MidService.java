@@ -1,10 +1,10 @@
 package com.app.weather.Service;
 
-import com.app.weather.dto.mid.MidDTO;
-import com.app.weather.dto.mid.MidItem;
-import com.app.weather.entity.mid.MidEntity;
-import com.app.weather.entity.mid.MidItemEntity;
-import com.app.weather.entity.mid.MidPk;
+import com.app.weather.dto.MidDTO;
+import com.app.weather.dto.MidItem;
+import com.app.weather.entity.MidEntity;
+import com.app.weather.entity.MidItemEntity;
+import com.app.weather.entity.MidPk;
 import com.app.weather.repository.MidItemRepository;
 import com.app.weather.repository.MidRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,7 +18,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

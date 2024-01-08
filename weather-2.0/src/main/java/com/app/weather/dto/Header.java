@@ -1,4 +1,4 @@
-package com.app.weather.dto.mid;
+package com.app.weather.dto;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MidHeader {
+public class Header {
     private String resultCode;
     private String resultMsg;
 }

@@ -25,7 +25,7 @@ public class ApiTests {
                 "&numOfRows=10" +
                 "&dataType=JSON" +
                 "&stnId=109" +
-                "&tmFc=202312260600");
+                "&tmFc=202401080600");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -47,7 +47,7 @@ public class ApiTests {
                 "&pageNo=1" +
                 "&numOfRows=1000" +
                 "&dataType=JSON" +
-                "&base_date=20231226" +
+                "&base_date=20240108" +
                 "&base_time=0800" +
                 "&nx=55" +
                 "&ny=127");

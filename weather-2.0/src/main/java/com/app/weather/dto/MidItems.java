@@ -1,4 +1,4 @@
-package com.app.weather.dto.mid;
+package com.app.weather.dto;
 
 import lombok.*;
 

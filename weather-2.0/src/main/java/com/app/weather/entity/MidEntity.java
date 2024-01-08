@@ -1,7 +1,7 @@
-package com.app.weather.entity.mid;
+package com.app.weather.entity;
 
-import com.app.weather.dto.mid.MidDTO;
-import com.app.weather.dto.mid.MidItem;
+import com.app.weather.dto.MidDTO;
+import com.app.weather.dto.MidItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

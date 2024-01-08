@@ -1,4 +1,4 @@
-package com.app.weather.entity.mid;
+package com.app.weather.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

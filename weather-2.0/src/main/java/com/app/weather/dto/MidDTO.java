@@ -1,11 +1,8 @@
-package com.app.weather.dto.mid;
+package com.app.weather.dto;
 
-import com.app.weather.entity.mid.MidEntity;
-import com.app.weather.entity.mid.MidItemEntity;
+import com.app.weather.entity.MidEntity;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
@@ -16,14 +13,14 @@ import java.util.stream.Collectors;
 public class MidDTO {
     private String stnId;
     private String tmFc;
-    private MidHeader header;
+    private Header header;
     private MidBody body;
 
     public static MidDTO convertToDTO(MidEntity midEntity) {
         return MidDTO.builder()
                 .stnId(midEntity.getMidPk().getStnId())
                 .tmFc(midEntity.getMidPk().getTmFc())
-                .header(MidHeader.builder()
+                .header(Header.builder()
                         .resultCode(midEntity.getResultCode())
                         .resultMsg(midEntity.getResultMsg())
                         .build())

@@ -16,7 +16,7 @@ public class MidServiceTest {
     @Test
     public void saveTest(){
         String stnId = "109";
-        String tmFc = "202401050600";
+        String tmFc = "202401080600";
         midService.save(stnId, tmFc);
     }
 }

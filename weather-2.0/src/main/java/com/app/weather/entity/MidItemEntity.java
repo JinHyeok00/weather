@@ -1,6 +1,6 @@
-package com.app.weather.entity.mid;
+package com.app.weather.entity;
 
-import com.app.weather.dto.mid.MidItem;
+import com.app.weather.dto.MidItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
 @Entity
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
