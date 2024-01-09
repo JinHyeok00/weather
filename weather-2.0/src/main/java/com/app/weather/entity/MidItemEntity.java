@@ -34,6 +34,7 @@ public class MidItemEntity {
                 .wfSv(midItem.getWfSv())
                 .midEntity(midEntity)
                 .build();
+
         return midItemEntity;
     }
 }

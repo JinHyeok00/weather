@@ -56,10 +56,10 @@ public class MidEntity{
                 .midItemEntities(new ArrayList<>())
                 .build();
 
-        List<MidItem> midItems = midDTO.getBody().getItems().getItem();
-        for (MidItem midItem : midItems) {
-            midEntity.getMidItemEntities().add(MidItemEntity.convertToEntity(midItem, midEntity));
-        }
+//        List<MidItem> midItems = midDTO.getBody().getItems().getItem();
+//        for (MidItem midItem : midItems) {
+//            midEntity.getMidItemEntities().add(MidItemEntity.convertToEntity(midItem, midEntity));
+//        }
 
         return midEntity;
     }
