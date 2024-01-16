@@ -72,8 +72,8 @@ public class ApiTests {
                 "&pageNo=1" +
                 "&numOfRows=100" +
                 "&dataType=JSON" +
-                "&base_date=20231213" +
-                "&base_time=2330" +
+                "&base_date=20240116" +
+                "&base_time=1730" +
                 "&nx=55" +
                 "&ny=127");
 

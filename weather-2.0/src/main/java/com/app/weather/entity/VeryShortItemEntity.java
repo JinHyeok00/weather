@@ -1,5 +1,6 @@
 package com.app.weather.entity;
 
+import com.app.weather.dto.ShortItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,4 +39,16 @@ public class VeryShortItemEntity {
             @JoinColumn(name = "ny", referencedColumnName = "ny")
     })
     private VeryShortEntity veryShortEntity;
+
+    public static VeryShortItemEntity convertToEntity(ShortItem shortItem, VeryShortEntity veryshortEntity) {
+        VeryShortItemEntity veryShortItemEntity = VeryShortItemEntity.builder()
+                .category(shortItem.getCategory())
+                .fcstDate(shortItem.getFcstDate())
+                .fcstTime(shortItem.getFcstTime())
+                .fcstValue(shortItem.getFcstValue())
+                .veryShortEntity(veryshortEntity)
+                .build();
+
+        return veryShortItemEntity;
+    }
 }

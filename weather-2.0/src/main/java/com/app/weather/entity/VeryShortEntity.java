@@ -1,6 +1,7 @@
 package com.app.weather.entity;
 
 import com.app.weather.dto.ShortDTO;
+import com.app.weather.dto.VeryShortDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,4 +42,19 @@ public class VeryShortEntity {
     @OneToMany(mappedBy = "veryShortEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<VeryShortItemEntity> veryShortItemEntities = new ArrayList<>();
+
+    public static VeryShortEntity convertToEntity(VeryShortDTO veryShortDTO) {
+        VeryShortEntity veryShortEntity = VeryShortEntity.builder()
+                .shortPk(new ShortPk(veryShortDTO.getBaseDate(), veryShortDTO.getBaseTime(), veryShortDTO.getNx(), veryShortDTO.getNy()))
+                .pageNo(veryShortDTO.getBody().getPageNo())
+                .dataType(veryShortDTO.getBody().getDataType())
+                .totalCount(veryShortDTO.getBody().getTotalCount())
+                .numOfRows(veryShortDTO.getBody().getNumOfRows())
+                .resultCode(veryShortDTO.getHeader().getResultCode())
+                .resultMsg(veryShortDTO.getHeader().getResultMsg())
+                .veryShortItemEntities(new ArrayList<>())
+                .build();
+
+        return veryShortEntity;
+    }
 }

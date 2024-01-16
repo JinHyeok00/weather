@@ -15,8 +15,8 @@ public class VeryShortServiceTests {
     // 기상청 초단기 예보
     @Test
     public void veryShortServiceTest() {
-        String baseDate = "20231216";
-        String baseTime = "2330";
+        String baseDate = "20240117";
+        String baseTime = "1530";
         int nx = 55;
         int ny = 127;
         if(veryShortService.veryShoutService(baseDate, baseTime, nx, ny).isPresent()){

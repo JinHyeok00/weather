@@ -1,9 +1,7 @@
 package com.app.weather.Service;
 
-import com.app.weather.dto.MidItem;
 import com.app.weather.dto.ShortDTO;
 import com.app.weather.dto.ShortItem;
-import com.app.weather.entity.MidItemEntity;
 import com.app.weather.entity.ShortEntity;
 import com.app.weather.entity.ShortItemEntity;
 import com.app.weather.entity.ShortPk;
@@ -32,10 +30,10 @@ public class ShortService {
     //조회
     public ShortDTO findById(String baseDate, String baseTime, int nx, int ny){
         ShortPk shortPk = new ShortPk(baseDate, baseTime, nx, ny);
-        Optional<ShortEntity> optionalMidEntity = shortRepository.findById(shortPk);
-        if(optionalMidEntity.isPresent()){
+        Optional<ShortEntity> optionalShortEntity = shortRepository.findById(shortPk);
+        if(optionalShortEntity.isPresent()){
             // 조회 값이 있으면
-            ShortEntity shortEntity = optionalMidEntity.get();
+            ShortEntity shortEntity = optionalShortEntity.get();
             ShortDTO shortDTO = ShortDTO.convertToDTO(shortEntity);
             return shortDTO;
         }
