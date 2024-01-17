@@ -47,12 +47,12 @@ public class MidEntity{
     public static MidEntity convertToEntity(MidDTO midDTO) {
         MidEntity midEntity = MidEntity.builder()
                 .midPk(new MidPk(midDTO.getStnId(), midDTO.getTmFc()))
+                .resultCode(midDTO.getHeader().getResultCode())
+                .resultMsg(midDTO.getHeader().getResultMsg())
                 .pageNo(midDTO.getBody().getPageNo())
                 .dataType(midDTO.getBody().getDataType())
                 .totalCount(midDTO.getBody().getTotalCount())
                 .numOfRows(midDTO.getBody().getNumOfRows())
-                .resultCode(midDTO.getHeader().getResultCode())
-                .resultMsg(midDTO.getHeader().getResultMsg())
                 .midItemEntities(new ArrayList<>())
                 .build();
 

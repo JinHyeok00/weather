@@ -46,12 +46,12 @@ public class ShortEntity {
     public static ShortEntity convertToEntity(ShortDTO shortDTO) {
         ShortEntity shortEntity = ShortEntity.builder()
                 .shortPk(new ShortPk(shortDTO.getBaseDate(), shortDTO.getBaseTime(), shortDTO.getNx(), shortDTO.getNy()))
+                .resultCode(shortDTO.getHeader().getResultCode())
+                .resultMsg(shortDTO.getHeader().getResultMsg())
                 .pageNo(shortDTO.getBody().getPageNo())
                 .dataType(shortDTO.getBody().getDataType())
                 .totalCount(shortDTO.getBody().getTotalCount())
                 .numOfRows(shortDTO.getBody().getNumOfRows())
-                .resultCode(shortDTO.getHeader().getResultCode())
-                .resultMsg(shortDTO.getHeader().getResultMsg())
                 .shortItemEntities(new ArrayList<>())
                 .build();
 
